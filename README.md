@@ -13,6 +13,10 @@ This is a WebRTC-based audio streaming application using OpenAI's API, developed
 - **Node.js** (optional, if not using Deno)
 - OpenAI API Key
 
+## Key WebRTC Concepts and Code Walkthrough
+
+ Check out the [tutorial](./tutorial.md) for a brief explanation of WebRTC and code walkthrough.
+
 ## Installation
 
 ### 1. Clone the Repository
@@ -47,7 +51,7 @@ npm run dev
 
 #### Using Deno:
 ```bash
-deno task start
+deno task dev
 ```
 
 The application will be available at `http://localhost:3000`.

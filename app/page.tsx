@@ -68,14 +68,18 @@ const App: React.FC = () => {
       const ephemeralToken = await getEphemeralToken();
 
       setStatus("Establishing connection...");
-
+      // Create a peer connection
       const pc = new RTCPeerConnection();
+     
+      // Set up to play remote audio from the model
       const audioEl = document.createElement("audio");
       audioEl.autoplay = true;
+
       pc.ontrack = (e) => (audioEl.srcObject = e.streams[0]);
 
       pc.addTrack(stream.getTracks()[0]);
-
+     
+      // Start the session using the Session Description Protocol (SDP)
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
 
