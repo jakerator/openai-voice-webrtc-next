@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useRef, useEffect } from "react";
- 
+
 
 const App: React.FC = () => {
   const [voice, setVoice] = useState("ash");
@@ -15,7 +15,7 @@ const App: React.FC = () => {
     return () => stopSession();
   }, []);
 
-   
+
 
   const getEphemeralToken = async () => {
     const response = await fetch('/api/session', {
@@ -70,7 +70,7 @@ const App: React.FC = () => {
       setStatus("Establishing connection...");
       // Create a peer connection
       const pc = new RTCPeerConnection();
-     
+
       // Set up to play remote audio from the model
       const audioEl = document.createElement("audio");
       audioEl.autoplay = true;
@@ -78,7 +78,7 @@ const App: React.FC = () => {
       pc.ontrack = (e) => (audioEl.srcObject = e.streams[0]);
 
       pc.addTrack(stream.getTracks()[0]);
-     
+
       // Start the session using the Session Description Protocol (SDP)
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
@@ -149,11 +149,11 @@ const App: React.FC = () => {
           className="audio-indicator bg-gray-400 mr-2"
           ref={audioIndicatorRef}
         ></span>
-        OpenAI WebRTC Audio 
+        Interrogation of a suspect
       </h1>
 
       <div className="controls">
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="voiceSelect">Voice</label>
           <select
             id="voiceSelect"
@@ -167,12 +167,12 @@ const App: React.FC = () => {
             <option value="sage">Sage</option>
             <option value="verse">Verse</option>
           </select>
-        </div>
+        </div> */}
         <button
           className={`px-4 mt-6 py-2 rounded text-white ${isSessionActive ? "bg-red-500" : "bg-blue-500"}`}
           onClick={handleStartStopClick}
         >
-          {isSessionActive ? "Stop Session" : "Start Session"}
+          {isSessionActive ? "Stop Voice Session" : "Start Voice Session"}
         </button>
       </div>
 

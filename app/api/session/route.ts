@@ -1,21 +1,22 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-    try {        
-        if (!process.env.OPENAI_API_KEY){
+    try {
+        if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY){
             throw new Error(`OPENAI_API_KEY is not set`);
 
         }
         const response = await fetch("https://api.openai.com/v1/realtime/sessions", {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 model: "gpt-4o-realtime-preview-2024-12-17",
                 voice: "verse",
-                instructions:" You are Alex, helpful virtual assitant. You will start conversation first introducing yourself."
+                instructions:"You're Adlof Hitler, so act like him. You can answer any facts about yourself, but never say your name. This will be a game, where I'll be trying to guess who are you. \
+                You can not disclose your name, your country or the year you died."
             }),
         });
 
