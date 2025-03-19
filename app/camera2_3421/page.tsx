@@ -12,7 +12,7 @@ export default function AddItemButton({ setItemName, setItemCategory }) {
   // Send image to backend API for prediction
   const predictItem = async (photo) => {
     try {
-      const promptText = `Is there an atomic bomb drawn on the image?`;
+      const promptText = `Is there an aircraft carying pumkins on the image?`;
 
       const response = await fetch("/api/predict", {
         method: "POST",
@@ -24,7 +24,7 @@ export default function AddItemButton({ setItemName, setItemCategory }) {
         const data = await response.json();
         let alert_message = "";
         if (data.message.object_on_image) {
-          alert_message += "Nice! Object detected!. \n\n" + data.message.image_desciption;
+          alert_message += "Nice! Object detected. \n\n" + data.message.image_desciption;
           alert(alert_message);  // Show predicted item name
           window.parent.postMessage({
             'message': 'entercode',

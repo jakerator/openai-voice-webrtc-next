@@ -13,11 +13,7 @@ const ItemResponse = z.object({
 
 export async function POST(req) {
     // Step 1: Extract the base64 string from the request body
-    const { image } = await req.json();
-
-    const promptText = `
-        Is there an atomic bomb drawn on the image?
-    `;
+    const { image, prompt } = await req.json();
 
     try {
         // Step 2: Send a prompt to the OpenAI API for prediction
@@ -27,7 +23,7 @@ export async function POST(req) {
                 {
                     role: "user",
                     content: [
-                        { type: "text", text: promptText }, // Add the text prompt for prediction
+                        { type: "text", text: prompt }, // Add the text prompt for prediction
                         {
                             type: "image_url",
                             image_url: {
@@ -40,7 +36,7 @@ export async function POST(req) {
             response_format: zodResponseFormat(ItemResponse, "item_response"),
         }
         const response = await openai.chat.completions.create(apidata);
-        console.log(apidata);
+        console.log(apidata.messages[0].content[0]);
         console.log(response.choices[0].message);
 
         // Step 3: Extract the predicted item name and category from the API's response
