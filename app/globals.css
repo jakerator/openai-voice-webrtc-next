@@ -77,3 +77,14 @@ button:disabled {
 .status.success {
   @apply bg-green-100 text-green-700;
 }
+
+
+.enable-camera, .take-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.enable-camera button, .take-photo button {
+  @apply bg-blue-500 text-white border-none px-4 py-2 text-lg rounded cursor-pointer;
+}
