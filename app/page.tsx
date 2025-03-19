@@ -149,7 +149,7 @@ const App: React.FC = () => {
           className="audio-indicator bg-gray-400 mr-2"
           ref={audioIndicatorRef}
         ></span>
-        Interrogation of a suspect. Talk to the murdere using any language you want.
+        Interrogation of a suspect. Talk to the persion using any language you want.
       </h1>
 
       <div className="controls">
