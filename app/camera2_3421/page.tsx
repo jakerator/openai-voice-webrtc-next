@@ -28,7 +28,7 @@ export default function AddItemButton({ setItemName, setItemCategory }) {
           alert(alert_message);  // Show predicted item name
           window.parent.postMessage({
             'message': 'entercode',
-            'value': 'atomicbomb134'
+            'value': 'aircraft_hht'
           }, "*");
           // entering some code;
         }
