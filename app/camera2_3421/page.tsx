@@ -13,7 +13,7 @@ export default function AddItemButton({ setItemName, setItemCategory }) {
   // Send image to backend API for prediction
   const predictItem = async (photo) => {
     try {
-      const promptText = `Is there an aircraft carying pumkins on the image?`;
+      const promptText = `Is there an aircraft carying pumpkins on the image?`;
 
       const response = await fetch("/api/predict", {
         method: "POST",
