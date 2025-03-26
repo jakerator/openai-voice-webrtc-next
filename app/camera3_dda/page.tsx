@@ -2,6 +2,7 @@
 import { Modal, Box, Button } from "@mui/material";
 import { useState, useRef } from "react";
 import { Camera } from "react-camera-pro";
+import Swal from 'sweetalert2'
 
 export default function AddItemButton({ setItemName, setItemCategory }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,21 +23,36 @@ export default function AddItemButton({ setItemName, setItemCategory }) {
       setProcessing(false);
       if (response.ok) {
         const data = await response.json();
-        let alert_message = "";
+        let alert_message = data.message.image_desciption;
+        let rep = false;
         if (data.message.object_on_image) {
-          alert_message += "Nice! Object detected. \n\n" + data.message.image_desciption;
-          alert(alert_message);  // Show predicted item name
-          window.parent.postMessage({
-            'message': 'entercode',
-            'value': 'sumoist332'
-          }, "*");
-          // entering some code;
+          rep = await Swal.fire({
+            title: 'Nice! Object detected!',
+            html: alert_message,
+            icon: 'success',
+            confirmButtonText: 'Complete the level'
+          })
+          if (rep.isConfirmed) {
+            window.parent.postMessage({
+              'message': 'entercode',
+              'value': 'sumoist332'
+            }, "*");
+          }
+
+
         }
         else {
-          alert_message += "Sorry, but object wasn't detected on your drawing. Try again. \n\n" + data.message.image_desciption;
-          alert(alert_message);  // Show predicted item name
-        }
+          rep = await Swal.fire({
+            title: "Sorry, but object wasn't detected on your drawing. Try again",
+            html: alert_message,
+            icon: 'error',
+            confirmButtonText: 'Try again'
+          })
+          if (rep.isConfirmed) {
+            window.location.reload();
+          }
 
+        }
 
 
       } else {

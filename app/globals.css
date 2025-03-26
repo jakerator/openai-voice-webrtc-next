@@ -88,3 +88,7 @@ button:disabled {
 .enable-camera button, .take-photo button {
   @apply bg-blue-500 text-white border-none px-4 py-2 text-lg rounded cursor-pointer;
 }
+
+.swal2-container {
+  z-index: 999999;
+}
